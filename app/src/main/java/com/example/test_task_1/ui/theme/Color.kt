@@ -20,3 +20,5 @@ val GreyLighter = Color(0xFFEDEDED)
 val ProgressBarGrey = Color(0xFF959595)
 
 val TextBlack = Color(0xFF242424)
+val BackgroundWhite = Color(0xFFF1F1F1)
+val DarkGrey = Color(0xFF383838)
