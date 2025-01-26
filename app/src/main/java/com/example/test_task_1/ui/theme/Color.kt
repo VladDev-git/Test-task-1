@@ -22,3 +22,5 @@ val ProgressBarGrey = Color(0xFF959595)
 val TextBlack = Color(0xFF242424)
 val BackgroundWhite = Color(0xFFF1F1F1)
 val DarkGrey = Color(0xFF383838)
+
+val TextRed = Color(0xFFFF0001)

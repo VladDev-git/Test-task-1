@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -61,7 +60,7 @@ fun LogoTopBar() {
                         painter = painterResource(id = R.drawable.logo),
                         contentDescription = "Logo",
                         modifier = Modifier
-                            .size(64.76.dp)
+                            .size(51.8.dp)
                     )
                     Row(
                         modifier = Modifier
@@ -70,13 +69,13 @@ fun LogoTopBar() {
                     ) {
                         Text(
                             text = "Фин",
-                            fontSize = 30.35.sp,
+                            fontSize = 24.28.sp,
                             color = Color.White,
                             fontFamily = customFont_sb_sans_display_semibold,
                         )
                         Text(
                             text = "Старт",
-                            fontSize = 30.35.sp,
+                            fontSize = 24.28.sp,
                             fontFamily = customFont_sb_sans_display_semibold,
                             color = Color.White,
                             fontWeight = FontWeight.Bold,

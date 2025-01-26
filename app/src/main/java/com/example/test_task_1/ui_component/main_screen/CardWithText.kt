@@ -57,7 +57,7 @@ fun CardWithText(
                 color = DarkGrey,
                 fontFamily = customFont_roboto_regular,
                 modifier = Modifier
-                    .padding(top = 15.dp, bottom = 10.dp)
+                    .padding(top = 10.dp, bottom = 10.dp)
             )
         }
     }
