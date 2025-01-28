@@ -14,17 +14,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.test_task_1.db.Transaction
 import com.example.test_task_1.ui.theme.BackgroundWhite
 import com.example.test_task_1.ui_component.bottom_menu.CustomBottomMenu
+import com.example.test_task_1.view_models.FinanceViewModel
 
 @Composable
 fun MainScreen(
-
+    onAllTransactionScreenNavigateClick: () -> Unit,
+    financeViewModel: FinanceViewModel = hiltViewModel()
 ) {
     val isBottomSheetVisibleState = remember { mutableStateOf(false) }
+    val isDesireBottomSheetVisibleState = remember { mutableStateOf(false) }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         bottomBar = {
             CustomBottomMenu()
         },
@@ -67,10 +73,15 @@ fun MainScreen(
                 item {
                     AddProfAndPayButton() { visibleValue ->
                         isBottomSheetVisibleState.value = visibleValue
+                        isDesireBottomSheetVisibleState.value = false
                     }
                 }
                 item {
-                    MoreContentButton()
+                    MoreContentButton(
+                        onAllTransactionScreenNavigateClick = {
+                            onAllTransactionScreenNavigateClick()
+                        }
+                    )
                 }
                 item {
                     DreamsListButton()
@@ -81,10 +92,24 @@ fun MainScreen(
             }
         }
     }
-    BottomSheetMenu(isBottomSheetVisibleState.value) {
-        isBottomSheetVisibleState.value = false
-    }
+    BottomSheetMenu(isBottomSheetVisibleState.value,
+        isDesireBottomSheetVisibleState.value,
+        onDismissRequest = {
+            isBottomSheetVisibleState.value = false
+        },
+        onSaveTransaction = { name, amount, type ->
+            isBottomSheetVisibleState.value = false
+            financeViewModel.addTransaction(
+                Transaction(
+                    name = name,
+                    amount = amount.toDouble(),
+                    type = type
+                )
+            )
+        }
+    )
 }
+
 
 
 

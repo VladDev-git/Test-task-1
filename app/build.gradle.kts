@@ -60,6 +60,9 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("com.google.dagger:hilt-compiler:2.51.1")
 
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     implementation("androidx.navigation:navigation-compose:2.8.5")

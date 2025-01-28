@@ -1,6 +1,7 @@
 package com.example.test_task_1.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.example.test_task_1.db.Transaction
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -25,3 +26,5 @@ val DarkGrey = Color(0xFF383838)
 
 val TextRed = Color(0xFFFF0001)
 val PagerBackground = Color(0x70EC5F5F)
+val TransactionExpenseColor = Color(0xFFE51D1D)
+val TransactionIncomeColor = Color(0xFF17AA31)

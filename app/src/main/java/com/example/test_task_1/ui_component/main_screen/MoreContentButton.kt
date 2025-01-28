@@ -1,5 +1,6 @@
 package com.example.test_task_1.ui_component.main_screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -12,7 +13,9 @@ import com.example.test_task_1.ui.theme.ProgressBarGrey
 import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
-fun MoreContentButton() {
+fun MoreContentButton(
+    onAllTransactionScreenNavigateClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth(),
@@ -24,6 +27,12 @@ fun MoreContentButton() {
             fontSize = 16.sp,
             fontFamily = customFont_roboto_regular,
             fontWeight = FontWeight(400),
+            modifier = Modifier
+                .clickable(
+                    onClick = {
+                        onAllTransactionScreenNavigateClick()
+                    }
+                )
         )
     }
 }

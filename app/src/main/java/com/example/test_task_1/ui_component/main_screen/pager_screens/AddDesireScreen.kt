@@ -16,8 +16,8 @@ import com.example.test_task_1.ui.theme.DarkGrey
 import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
-fun IncomeScreen(
-    onSaveClick: (String, String) -> Unit
+fun AddDesireScreen(
+
 ) {
     val nameState = remember { mutableStateOf("") }
     val amountState = remember { mutableStateOf("") }
@@ -57,9 +57,7 @@ fun IncomeScreen(
         Spacer(modifier = Modifier.padding(top = 40.dp))
         SaveGradientButton(
             onSaveClick = {
-                if (nameState.value.isEmpty() || amountState.value.isEmpty())
-                    return@SaveGradientButton
-                else onSaveClick(nameState.value, amountState.value)
+                if (nameState.value.isEmpty() || amountState.value.isEmpty()) return@SaveGradientButton
             }
         )
     }

@@ -9,12 +9,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.test_task_1.ui.theme.Test_Task_1Theme
+import com.example.test_task_1.ui_component.income_expense_screen.IncomeExpenseScreen
+import com.example.test_task_1.ui_component.income_expense_screen.data.IncomeExpenseScreenObject
 import com.example.test_task_1.ui_component.loading_screen.LoadingScreen
 import com.example.test_task_1.ui_component.loading_screen.data.LoadingScreenObject
 import com.example.test_task_1.ui_component.main_screen.MainScreen
 import com.example.test_task_1.ui_component.main_screen.data.MainScreenObject
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +50,14 @@ class MainActivity : ComponentActivity() {
                         LoadingScreen()
                     }
                     composable<MainScreenObject> {
-                        MainScreen()
+                        MainScreen(
+                            onAllTransactionScreenNavigateClick = {
+                                navController.navigate(IncomeExpenseScreenObject)
+                            }
+                        )
+                    }
+                    composable<IncomeExpenseScreenObject> {
+                        IncomeExpenseScreen()
                     }
                 }
             }
