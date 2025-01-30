@@ -93,8 +93,8 @@ fun MainScreen(
                             .padding(top = 15.dp, bottom = 10.dp, start = 22.dp, end = 22.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        CardWithText(totalExpenses.toString(), "Расходы", 155.dp)
-                        CardWithText(totalDeposits.toString(), "Накопления", 155.dp)
+                        CardWithText(totalExpenses, "Расходы", 155.dp)
+                        CardWithText(totalDeposits, "Накопления", 155.dp)
                     }
                 }
                 item {
@@ -104,7 +104,7 @@ fun MainScreen(
                             .padding(top = 10.dp, bottom = 10.dp, start = 22.dp, end = 22.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        CardWithText(totalIncome.toString(), "Общий доход", 330.dp)
+                        CardWithText(totalIncome, "Общий доход", 330.dp, 10)
                     }
                 }
                 item {

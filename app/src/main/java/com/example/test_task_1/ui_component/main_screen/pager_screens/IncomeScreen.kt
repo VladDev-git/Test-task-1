@@ -38,6 +38,7 @@ fun IncomeScreen(
         )
         RoundedCornerTextField(
             text = nameState.value,
+            maxSymbols = 20,
             label = "",
             onValueChange = { nameState.value = it },
             onExpandedClick = {
@@ -55,6 +56,7 @@ fun IncomeScreen(
         )
         RoundedCornerTextField(
             text = amountState.value,
+            numberOnly = true,
             label = "₽",
             onValueChange = { amountState.value = it },
             onExpandedClick = {

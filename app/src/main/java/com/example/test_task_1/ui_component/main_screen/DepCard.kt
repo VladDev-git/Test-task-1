@@ -120,7 +120,7 @@ fun DepCard(
                             modifier = Modifier.padding(bottom = 7.dp)
                         )
                         Text(
-                            text = goal.amount.toString(),
+                            text = goal.amount.toInt().toString(),
                             fontSize = 18.sp,
                             style = gradientTextStyle(),
                             fontFamily = customFont_roboto_regular,
@@ -151,7 +151,7 @@ fun DepCard(
                             modifier = Modifier.padding(bottom = 7.dp)
                         )
                         Text(
-                            text = goal.deadline + " мес.",
+                            text = goal.deadline.take(5) + " мес.",
                             fontSize = 18.sp,
                             style = gradientTextStyle(),
                             fontFamily = customFont_roboto_regular,

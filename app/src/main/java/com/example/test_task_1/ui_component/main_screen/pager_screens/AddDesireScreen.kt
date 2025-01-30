@@ -37,6 +37,7 @@ fun AddDesireScreen(
         )
         RoundedCornerTextField(
             text = nameState.value,
+            maxSymbols = 20,
             label = "",
             onValueChange = { nameState.value = it },
             onExpandedClick = {}
@@ -52,6 +53,7 @@ fun AddDesireScreen(
         )
         RoundedCornerTextField(
             text = amountState.value,
+            numberOnly = true,
             label = "₽",
             onValueChange = { amountState.value = it },
             onExpandedClick = {}

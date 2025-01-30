@@ -1,5 +1,6 @@
 package com.example.test_task_1.ui_component.main_screen
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,9 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,10 +27,13 @@ import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
 fun CardWithText(
-    amount: String,
+    amount: Double,
     label: String,
-    width: Dp
+    width: Dp,
+    maxSymbols: Int = 6
 ) {
+    Log.d("CardWithText", "amountTransform: $amount")
+
     Card(
         modifier = Modifier
             .width(width)
@@ -42,8 +49,15 @@ fun CardWithText(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = amount,
-                fontSize = 32.sp,
+                text = if (amount < 0) {
+                    "0" + " ₽"
+                } else if (amount.toInt().toString().length > maxSymbols) {
+                    amount.toInt().toString().substring(0, maxSymbols) + "+" + " ₽"
+                } else {
+                    amount.toInt().toString() + " ₽"
+
+                },
+                fontSize = 28.sp,
                 fontWeight = FontWeight(700),
                 color = DarkGrey,
                 fontFamily = customFont_roboto_regular,
