@@ -51,13 +51,23 @@ class MainActivity : ComponentActivity() {
                     }
                     composable<MainScreenObject> {
                         MainScreen(
+                            onNavHomeClick = {
+
+                            },
                             onAllTransactionScreenNavigateClick = {
                                 navController.navigate(IncomeExpenseScreenObject)
                             }
                         )
                     }
                     composable<IncomeExpenseScreenObject> {
-                        IncomeExpenseScreen()
+                        IncomeExpenseScreen(
+                            onNavHomeClick = {
+                                //navController.navigate(MainScreenObject)
+                            },
+                            onBackClick = {
+                                navController.popBackStack()
+                            }
+                        )
                     }
                 }
             }

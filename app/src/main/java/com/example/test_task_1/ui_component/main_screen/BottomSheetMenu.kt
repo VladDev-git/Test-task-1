@@ -32,8 +32,11 @@ import kotlinx.coroutines.launch
 fun BottomSheetMenu(
     isVisible: Boolean,
     isDesire: Boolean,
+    isEdit: Boolean,
     onDismissRequest: () -> Unit,
-    onSaveTransaction: (String, String, String) -> Unit
+    onSaveTransaction: (String, String, String) -> Unit,
+    onSaveGoal: (String, String) -> Unit,
+    onEditGoal: (String, String) -> Unit
 ) {
     val selectedIndex = remember {
         mutableStateOf(0)
@@ -86,10 +89,19 @@ fun BottomSheetMenu(
                             )
                         }
                     }
+                } else if (isEdit) {
+                    AddDesireScreen(
+                        onSaveClick = { name, amount ->
+                            onEditGoal(name, amount)
+                        }
+                    )
                 } else {
-                    AddDesireScreen()
+                    AddDesireScreen(
+                        onSaveClick = { name, amount ->
+                            onSaveGoal(name, amount)
+                        }
+                    )
                 }
-
                 Spacer(modifier = Modifier.padding(top = 200.dp))
             }
         }

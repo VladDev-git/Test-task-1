@@ -11,8 +11,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,17 +24,22 @@ import com.example.test_task_1.view_models.FinanceViewModel
 
 @Composable
 fun IncomeExpenseScreen(
+    onNavHomeClick: () -> Unit,
+    onBackClick: () -> Unit,
     financeViewModel: FinanceViewModel = hiltViewModel()
 ) {
-    val transactionsList = remember {
-        mutableStateOf(financeViewModel.transactions)
-    }
+    val transactionsList by financeViewModel.transactions.collectAsState()
 
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
         bottomBar = {
-            CustomBottomMenu()
+            CustomBottomMenu(
+                onNavHomeClick = {
+                    onNavHomeClick()
+                },
+                onAddDesireClick = {}
+            )
         },
         topBar = {
             LogoTopBar()
@@ -51,7 +56,12 @@ fun IncomeExpenseScreen(
                     .fillMaxSize()
                     .padding(paddingValues),
             ) {
-                SectionNameBar("Доходы и расходы")
+                SectionNameBar(
+                    "Доходы и расходы",
+                    onBackClick = {
+                        onBackClick()
+                    }
+                )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -60,14 +70,19 @@ fun IncomeExpenseScreen(
                     LazyColumn(
                         modifier = Modifier
                             .width(330.dp)
+                            .padding(start = 15.dp, end = 15.dp)
                     ) {
-                        items(transactionsList.value.value) { transaction ->
-                            TransactionListItem(transaction = transaction)
+                        items(transactionsList, key = {it.id}) { transaction ->
+                            TransactionListItem(
+                                transaction = transaction,
+                                onTransactionDeleteClick = { transactionItem ->
+                                    financeViewModel.deleteTransaction(transactionItem)
+                                }
+                            )
                         }
                     }
                 }
             }
-
         }
     }
 }

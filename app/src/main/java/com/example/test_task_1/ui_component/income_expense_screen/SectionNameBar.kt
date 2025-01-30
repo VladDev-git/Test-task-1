@@ -2,6 +2,7 @@ package com.example.test_task_1.ui_component.income_expense_screen
 
 import RedGradientBackground
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +25,8 @@ import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
 fun SectionNameBar(
-    sectionName: String
+    sectionName: String,
+    onBackClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -63,6 +65,11 @@ fun SectionNameBar(
                     contentDescription = null,
                     modifier = Modifier
                         .size(28.dp)
+                        .clickable(
+                            onClick = {
+                                onBackClick()
+                            }
+                        )
                 )
             }
         }

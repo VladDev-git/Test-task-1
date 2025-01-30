@@ -17,7 +17,7 @@ import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
 fun AddDesireScreen(
-
+    onSaveClick: (String, String) -> Unit
 ) {
     val nameState = remember { mutableStateOf("") }
     val amountState = remember { mutableStateOf("") }
@@ -58,6 +58,10 @@ fun AddDesireScreen(
         SaveGradientButton(
             onSaveClick = {
                 if (nameState.value.isEmpty() || amountState.value.isEmpty()) return@SaveGradientButton
+                onSaveClick(
+                    nameState.value,
+                    amountState.value
+                )
             }
         )
     }

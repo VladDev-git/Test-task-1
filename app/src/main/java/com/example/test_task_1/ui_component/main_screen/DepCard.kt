@@ -3,6 +3,7 @@ package com.example.test_task_1.ui_component.main_screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,14 +28,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.test_task_1.R
+import com.example.test_task_1.db.Goal
 import com.example.test_task_1.ui.theme.DarkGrey
 import com.example.test_task_1.ui.theme.ProgressBarGrey
 import com.example.test_task_1.ui.theme.TextRed
 import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 import gradientTextStyle
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun DepCard() {
+fun DepCard(
+    goal: Goal,
+    onGoalDeleteClick: (Goal) -> Unit,
+    onGoalEditClick: (Goal) -> Unit
+) {
+    val targetDate = remember {
+        mutableStateOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth(),
@@ -69,14 +83,14 @@ fun DepCard() {
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Iphone".uppercase(),
+                            text = goal.name.uppercase(),
                             fontSize = 18.sp,
                             color = Color.White,
                             fontFamily = customFont_roboto_regular,
                             fontWeight = FontWeight(500)
                         )
                         Text(
-                            text = "08.12.2024",
+                            text = targetDate.value,
                             fontSize = 12.sp,
                             color = ProgressBarGrey,
                             fontFamily = customFont_roboto_regular,
@@ -106,7 +120,7 @@ fun DepCard() {
                             modifier = Modifier.padding(bottom = 7.dp)
                         )
                         Text(
-                            text = "200 000 ₽",
+                            text = goal.amount.toString(),
                             fontSize = 18.sp,
                             style = gradientTextStyle(),
                             fontFamily = customFont_roboto_regular,
@@ -137,7 +151,7 @@ fun DepCard() {
                             modifier = Modifier.padding(bottom = 7.dp)
                         )
                         Text(
-                            text = "5 лет",
+                            text = goal.deadline + " мес.",
                             fontSize = 18.sp,
                             style = gradientTextStyle(),
                             fontFamily = customFont_roboto_regular,
@@ -154,7 +168,11 @@ fun DepCard() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clickable {
+                                onGoalDeleteClick(goal)
+                            }
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.trash),
@@ -172,7 +190,11 @@ fun DepCard() {
                         )
                     }
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clickable {
+                                onGoalEditClick(goal)
+                            }
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.edit),

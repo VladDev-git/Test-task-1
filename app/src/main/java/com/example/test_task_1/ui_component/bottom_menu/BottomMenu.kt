@@ -28,7 +28,10 @@ import com.example.test_task_1.R
 import com.example.test_task_1.ui.theme.DarkGrey
 
 @Composable
-fun CustomBottomMenu() {
+fun CustomBottomMenu(
+    onNavHomeClick: () -> Unit,
+    onAddDesireClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,7 +51,9 @@ fun CustomBottomMenu() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    onClick = { /* TODO */ }
+                    onClick = {
+                        onNavHomeClick()
+                    }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.bottom_menu_home),
@@ -69,7 +74,9 @@ fun CustomBottomMenu() {
                     contentAlignment = Alignment.Center
                 ) {
                     IconButton(
-                        onClick = { /* TODO */ }
+                        onClick = {
+                            onAddDesireClick()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.plus),
