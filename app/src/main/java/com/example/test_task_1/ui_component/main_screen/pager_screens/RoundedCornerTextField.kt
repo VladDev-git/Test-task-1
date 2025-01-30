@@ -1,6 +1,7 @@
 package com.example.test_task_1.ui_component.main_screen.pager_screens
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,7 +25,8 @@ fun RoundedCornerTextField(
     singleLine: Boolean = true,
     text: String,
     label: String,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    onExpandedClick: () -> Unit
 ) {
     TextField(
         value = text,
@@ -59,5 +61,8 @@ fun RoundedCornerTextField(
                 color = RedGradientColor2,
                 shape = RoundedCornerShape(20.dp)
             )
+            .clickable {
+                onExpandedClick()
+            }
     )
 }

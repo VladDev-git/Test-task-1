@@ -11,8 +11,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import kotlin.math.ceil
 
@@ -154,6 +152,7 @@ class FinanceViewModel @Inject constructor(
 
     fun updateGoal(newGoal: Goal) {
         viewModelScope.launch {
+            Log.d("FinanceViewModel", "Updating goal: $newGoal")
             dao.updateGoal(newGoal)
             _goal.value = newGoal
         }

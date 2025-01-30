@@ -33,6 +33,7 @@ import com.example.test_task_1.view_models.FinanceViewModel
 fun MainScreen(
     onNavHomeClick: () -> Unit,
     onAllTransactionScreenNavigateClick: () -> Unit,
+    onMoreMenuClick: () -> Unit,
     financeViewModel: FinanceViewModel = hiltViewModel()
 ) {
     val localContext = LocalContext.current
@@ -64,6 +65,9 @@ fun MainScreen(
                 onAddDesireClick = {
                     isDesireBottomSheetVisibleState.value = true
                     isBottomSheetVisibleState.value = true
+                },
+                onMoreMenuClick = {
+                    onMoreMenuClick()
                 }
             )
         },
@@ -171,6 +175,7 @@ fun MainScreen(
             financeViewModel.calculateGoalDeadline(amount.toDouble())
             financeViewModel.updateGoal(
                 Goal(
+                    id = goal?.id ?: 0,
                     name = name,
                     amount = amount.toDouble(),
                     deadline = financeViewModel.goalDeadline.value

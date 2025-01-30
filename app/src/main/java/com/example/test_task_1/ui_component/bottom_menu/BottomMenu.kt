@@ -30,7 +30,8 @@ import com.example.test_task_1.ui.theme.DarkGrey
 @Composable
 fun CustomBottomMenu(
     onNavHomeClick: () -> Unit,
-    onAddDesireClick: () -> Unit
+    onAddDesireClick: () -> Unit,
+    onMoreMenuClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -89,7 +90,9 @@ fun CustomBottomMenu(
                 Spacer(modifier = Modifier.weight(1f))
 
                 IconButton(
-                    onClick = { /* TODO */ }
+                    onClick = {
+                        onMoreMenuClick()
+                    }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.bottom_menu_more_menu),

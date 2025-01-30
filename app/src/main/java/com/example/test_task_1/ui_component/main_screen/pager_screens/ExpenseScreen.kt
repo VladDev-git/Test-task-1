@@ -38,7 +38,8 @@ fun ExpenseScreen(
         RoundedCornerTextField(
             text = nameState.value,
             label = "",
-            onValueChange = { nameState.value = it }
+            onValueChange = { nameState.value = it },
+            onExpandedClick = {}
         )
         Text(
             text = "Сумма",
@@ -52,7 +53,8 @@ fun ExpenseScreen(
         RoundedCornerTextField(
             text = amountState.value,
             label = "₽",
-            onValueChange = { amountState.value = it }
+            onValueChange = { amountState.value = it },
+            onExpandedClick = {}
         )
         Spacer(modifier = Modifier.padding(top = 40.dp))
         SaveGradientButton(

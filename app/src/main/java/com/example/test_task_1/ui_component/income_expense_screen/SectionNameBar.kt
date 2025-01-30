@@ -4,6 +4,8 @@ import RedGradientBackground
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -41,11 +43,24 @@ fun SectionNameBar(
                 .clip(shape = RoundedCornerShape(40.dp))
                 .RedGradientBackground()
         ) {
-            Box(
+            Row(
                 modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
+                    .fillMaxSize()
+                    .padding(horizontal = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
+                Image(
+                        painter = painterResource(id = com.example.test_task_1.R.drawable.arrow_left),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(28.dp)
+                    .clickable(
+                        onClick = {
+                            onBackClick()
+                        }
+                    )
+                )
+                Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = sectionName,
                     color = Color.White,
@@ -54,24 +69,21 @@ fun SectionNameBar(
                     fontFamily = customFont_roboto_regular
                 )
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(start = 10.dp),
-                contentAlignment = Alignment.CenterStart
-            ) {
-                Image(
-                    painter = painterResource(id = com.example.test_task_1.R.drawable.arrow_left),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clickable(
-                            onClick = {
-                                onBackClick()
-                            }
-                        )
-                )
-            }
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxSize(),
+//                contentAlignment = Alignment.Center
+//            ) {
+//
+//            }
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .padding(start = 10.dp),
+//                contentAlignment = Alignment.CenterStart
+//            ) {
+//
+//            }
         }
     }
 }

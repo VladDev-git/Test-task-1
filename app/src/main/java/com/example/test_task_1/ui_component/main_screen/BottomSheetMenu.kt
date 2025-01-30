@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,12 +45,18 @@ fun BottomSheetMenu(
     val pagerState = rememberPagerState(0)
     val coroutineScope = rememberCoroutineScope()
     val options = listOf("Расход", "Доход")
+    val bottomSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false
+    )
 
     if (isVisible) {
         ModalBottomSheet(
             onDismissRequest = onDismissRequest,
             containerColor = Color.White,
+            sheetState = bottomSheetState,
         ) {
+
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,11 +87,24 @@ fun BottomSheetMenu(
                             0 -> ExpenseScreen(
                                 onSaveClick = { name, amount ->
                                     onSaveTransaction(name, amount, EXPENSE)
+                                    coroutineScope.launch {
+                                        pagerState.scrollToPage(0)
+                                    }
+                                    selectedIndex.value = 0
                                 }
                             )
                             1 -> IncomeScreen(
                                 onSaveClick = { name, amount ->
                                     onSaveTransaction(name, amount, INCOME)
+                                    coroutineScope.launch {
+                                        pagerState.scrollToPage(0)
+                                    }
+                                    selectedIndex.value = 0
+                                },
+                                onExpandedClick = {
+                                    coroutineScope.launch {
+                                        bottomSheetState.expand()
+                                    }
                                 }
                             )
                         }

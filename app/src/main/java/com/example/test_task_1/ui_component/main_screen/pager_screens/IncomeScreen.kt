@@ -17,7 +17,8 @@ import com.example.test_task_1.ui_component.fonts.customFont_roboto_regular
 
 @Composable
 fun IncomeScreen(
-    onSaveClick: (String, String) -> Unit
+    onSaveClick: (String, String) -> Unit,
+    onExpandedClick: () -> Unit
 ) {
     val nameState = remember { mutableStateOf("") }
     val amountState = remember { mutableStateOf("") }
@@ -38,7 +39,10 @@ fun IncomeScreen(
         RoundedCornerTextField(
             text = nameState.value,
             label = "",
-            onValueChange = { nameState.value = it }
+            onValueChange = { nameState.value = it },
+            onExpandedClick = {
+                onExpandedClick()
+            }
         )
         Text(
             text = "Сумма",
@@ -52,7 +56,10 @@ fun IncomeScreen(
         RoundedCornerTextField(
             text = amountState.value,
             label = "₽",
-            onValueChange = { amountState.value = it }
+            onValueChange = { amountState.value = it },
+            onExpandedClick = {
+                onExpandedClick()
+            }
         )
         Spacer(modifier = Modifier.padding(top = 40.dp))
         SaveGradientButton(
