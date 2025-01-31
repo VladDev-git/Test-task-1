@@ -32,11 +32,17 @@ fun RoundedCornerTextField(
     onValueChange: (String) -> Unit,
     onExpandedClick: () -> Unit
 ) {
+    val regex = if (numberOnly) {
+        Regex("^\\d*\\.?\\d*\$")
+    } else {
+        Regex(".*")
+    }
+
     TextField(
         value = text,
-        onValueChange = {
-            if (it.length <= maxSymbols) {
-                onValueChange(it)
+        onValueChange = { newValue ->
+            if (newValue.matches(regex) && newValue.length <= maxSymbols) {
+                onValueChange(newValue)
             }
         },
         trailingIcon = {
